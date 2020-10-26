@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+<div class='container'>
+	<div class='login_wrap'>
+    <!--  Login 자체를 감싸는 Wrap -->
+    <div class='login_account'>
+        <h3>회원가입</h3>
+
+        <div class='login_guide'>
+            <p> 여러분의 계정을 등록해보세요. </p>
+            <p> 여러 명함 관리를 할 수 있습니다!</p>
+        </div>
+
+
+        <div class="login_input">
+            <!-- 회원가입 -->
+            <form action="User.do" method="POST">
+                <ul>
+                    <li>
+                        <input type="text" name="name" placeholder="이름">
+                    </li>
+                    <li>
+                        <input type="text" name="id" placeholder="아이디(5~11자)">
+                    </li>
+                    <li>
+                        <input type="password" name="password1" placeholder="비밀번호(최소 8자)">
+                    </li>
+                    <li>
+                        <input type="password" name="password2" placeholder="비밀번호(최소 8자)">
+                    </li>
+
+                    <li>
+                        <div class='btn_login'>
+                        	<input type="hidden" name="a" value="signup">
+                            <button type='submit'>회원가입</button>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <div class='signup_guide'>
+            <div class='signup_txt'>
+                <p class="sign_txt"> 회원 가입을 하게 되면 다양한 혜택이 쏟아진다!</p>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
