@@ -131,7 +131,7 @@ public class Card extends HttpServlet {
 			CardBean cbean = new CardBean();
 			cbean = cdao.Detail(cnum);
 			request.setAttribute("cbean", cbean);
-			RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("new_detail.jsp");
 			rd.forward(request, response);	
 		}
 		else if("Update".equals(actionName)) {
@@ -219,7 +219,7 @@ public class Card extends HttpServlet {
 			//사용자가 등록한 명함들을 벡터로 가져옴
 			request.setAttribute("user_unum", unum);
 			request.setAttribute("v", v);
-			RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("new_list.jsp");
 			rd.forward(request, response);	
 		}
 		

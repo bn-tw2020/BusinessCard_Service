@@ -17,14 +17,10 @@ public class UserDAO {
 	
 	public void getCon() {
 		try {
-			System.out.println("connection1");
 			Context initctx = new InitialContext();
-			System.out.println("connection2");
 			Context envctx = (Context)initctx.lookup("java:comp/env");
-			System.out.println("connection3");
 			DataSource ds = (DataSource)envctx.lookup("jdbc/pool");
 			con = ds.getConnection();
-			System.out.println("connection4");
 			
 		}catch(Exception e) {
 			e.printStackTrace();

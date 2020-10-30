@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 		<header>
 			<div class='banner_wrap'>
 			<!-- 리스트로 이동 -->
-				<a href='#'>
+				<a href='Card.do'>
 					<span class='back_button'><</span>
 				</a>
 				<span class='title'>명함 상세</span>
@@ -29,10 +30,10 @@
 					<img alt="프로필 사진" src="img/profile.png" width="100px" height="100px">
 				</div>	
 				<div class='card_info'>
-					<span class='card_name'>최민석</span>
-					<span class='card_department'>UIUX 개발1팀</span>
-					<span class='company_name'>DB Company</span>
-					<span class='card_position'>대리</span>
+					<span class='card_name'>${cbean.cname }</span>
+					<span class='card_department'>${cbean.dep }</span>
+					<span class='company_name'>${cbean.cb.comname} </span>
+					<span class='card_position'>${cbean.pos }</span>
 				</div>
 			</div>
 			<hr>
@@ -44,7 +45,7 @@
 					<div class='sub_content_wrap'>
 						<div class='title_content'>
 							<div class='gray_title'>휴대전화</div>
-							<div class='content'>010-3759-9397</div>
+							<div class='content'>${cbean.phone }</div>
 						</div>
 						<span class='icon'>
 					
@@ -56,7 +57,7 @@
 					<div class='sub_content_wrap'>
 						<div class='title_content'>
 							<div class='gray_title'>이메일</div>
-							<div class='content'>alstjrchl97@naver.com</div>
+							<div class='content'>${cbean.email }</div>
 						</div>
 						<span class='icon'>
 							<a href='#'><img src="img/email.png" width="30px" height="30px" alt='전화'/></a>
@@ -66,7 +67,20 @@
 					<div class='sub_content_wrap'>
 						<div class='title_content'>
 							<div class='gray_title'>회사 주소</div>
-							<div class='content'>경기도 평택시 평남로 962</div>
+							<div class='content'>${cbean.cb.address }</div>
+						</div>
+						<span class='icon'>
+							<a href='#'><img src="img/address.png" width="30px" height="30px" alt='전화'/></a>
+						</span>
+					</div>
+					
+					<div class='sub_content_wrap'>
+						<div class='title_content'>
+							<div class='gray_title'>회사 전화번호</div>
+							
+							<c:forEach var="vcp" items="${cbean.cb.vcp}">
+								<div class='content'>${vcp.comphone}</div>
+							</c:forEach>
 						</div>
 						<span class='icon'>
 							<a href='#'><img src="img/address.png" width="30px" height="30px" alt='전화'/></a>
@@ -76,7 +90,7 @@
 					<div class='sub_content_wrap'>
 						<div class='title_content'>
 							<div class='gray_title'>FAX</div>
-							<div class='content'>041-2342-5678</div>
+							<div class='content'>${cbean.cb.fax }</div>
 						</div>
 						<span class='icon'>
 							<a href='#'><img src="img/fax.png" width="30px" height="30px" alt='전화'/></a>
@@ -86,7 +100,7 @@
 					<div class='sub_content_wrap'>
 						<div class='title_content'>
 							<div class='gray_title'>저장 일자</div>
-							<div class='content'>2019. 10. 12</div>
+							<div class='content'>${cbean.create_at }</div>
 						</div>
 					</div>
 					
