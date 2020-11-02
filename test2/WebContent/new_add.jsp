@@ -15,7 +15,7 @@
 		<header>
 			<div class='banner_wrap'>
 			<!-- 리스트로 이동 -->
-				<a href='#'>
+				<a href='Card.do'>
 					<span class='back_button'><</span>
 				</a>
 				<span class='title'>명함 생성</span>
@@ -24,62 +24,69 @@
 		
 		<main>
 		<!-- 명함 생성 폼 -->
-		<form action='#'>
+		<form action='Card.do'>
 			<div class='main_wrap'>
 			
 				<div class="content_wrap">
 					<div class='sub_title'>이름</div>
 					<div class='content_input'>
-						<input name='user_name' type="text" placeholder="이름 입력"/>
+						<input name='name' type="text" placeholder="이름 입력"/>
+					</div>
+				</div>	
+				
+				<div class="content_wrap">
+					<div class='sub_title'>휴대폰번호</div>
+					<div class='content_input'>
+						<input name='phone' type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="휴대폰번호 입력"/>
 					</div>
 				</div>	
 				
 				<div class="content_wrap">
 					<div class='sub_title'>직책</div>
 					<div class='content_input'>
-						<input name='user_position' type="text" placeholder="직책 입력"/>
+						<input name='pos' type="text" placeholder="직책 입력"/>
 					</div>
 				</div>
 				
 				<div class="content_wrap">
 					<div class='sub_title'>부서</div>
 					<div class='content_input'>
-						<input name='user_team' type="text" placeholder="부서명 입력"/>
+						<input name='dep' type="text" placeholder="부서명 입력"/>
 					</div>
 				</div>	
 				
 				<div class="content_wrap">
 					<div class='sub_title'>회사</div>
 					<div class='content_input'>
-						<input name='user_company' type="text" placeholder="회사명 입력"/>
+						<input name='comname' type="text" placeholder="회사명 입력"/>
 					</div>
 				</div>		
 				
 				<div class="content_wrap">
 					<div class='sub_title'>이메일</div>
 					<div class='content_input'>
-						<input name='user_email' type="email" placeholder="이메일 입력"/>
+						<input name='email' type="email" placeholder="이메일 입력"/>
 					</div>
 				</div>
 				
 				<div class="content_wrap">
 					<div class='sub_title'>주소</div>
 					<div class='content_input'>
-						<input name='user_address' type="text" placeholder="주소 입력"/>
+						<input name='address' type="text" placeholder="주소 입력"/>
 					</div>
 				</div>
 				
 				<div class="content_wrap">
 					<div class='sub_title'>FAX</div>
 					<div class='content_input'>
-						<input name='user_FAX' type="text" placeholder="FAX 번호 입력"/>
+						<input name='fax' type="text" placeholder="FAX 번호 입력"/>
 					</div>
 				</div>
 				
 				<div class="content_wrap_phone">
-					<div class='sub_title'>휴대폰</div>
+					<div class='sub_title'>전화번호</div>
 					<div class='content_input'>
-						<input name='user_phone' type="text" placeholder="휴대폰 번호 입력"/>
+						<input name='comphone' type="text" placeholder="전화 번호 입력"/>
 							<div class='plus_phone'>
 								<button class="addNum" type="button">+</button>
 							</div>
@@ -88,6 +95,8 @@
 				</div>
 				
 				<div class="content_wrap">
+					<input type="hidden" name='user_unum' value="${param.num }"/>
+					<input type="hidden" name="a" value="Add"/>
 					<div class='button_submit'>
 						<button >명함 생성하기</button>
 					</div>
@@ -108,7 +117,7 @@
             $('.content_wrap_phone').append(
             		'<div class="sub_title">추가 휴대폰</div>\
             		<div class="content_input">\
-            		<input name="user_phone" type="text" placeholder="휴대폰 번호 입력"/>\
+            		<input name="comphone" type="text" placeholder="휴대폰 번호 입력"/>\
             		</div>')
         });
     });

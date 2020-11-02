@@ -33,7 +33,7 @@
 							<li class='menubar'>로그아웃</li>
 						</a>
 						<!-- 명함 등록 이 -->
-						<a href="add.jsp?num=${user_unum }">
+						<a href="new_add.jsp?num=${user_unum }">
 							<li class='menubar'>명함등록</li>
 						</a>
 						<!-- user 부분에 로그인한 사람 아이디 들어가기 -->
