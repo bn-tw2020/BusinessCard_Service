@@ -131,7 +131,7 @@ public class Card extends HttpServlet {
 			CardBean cbean = new CardBean();
 			cbean = cdao.Detail(cnum);
 			request.setAttribute("cbean", cbean);
-			RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("new_detail.jsp");
 			rd.forward(request, response);	
 		}
 		else if("Update".equals(actionName)) {
@@ -203,6 +203,28 @@ public class Card extends HttpServlet {
 				rd.forward(request, response);	
 			}
 		}
+		
+		else if("Search".equals(actionName)) {
+			System.out.println("검색하고있습니다.");
+			String search = (String) request.getParameter("search");
+			System.out.println(search);
+			
+			HttpSession session = request.getSession();
+			String id = (String) session.getAttribute("id");
+			String username = (String) session.getAttribute("username");
+			System.out.println(id);
+			System.out.println(username);
+			
+			UserDAO udao = new UserDAO();
+			int unum = udao.getUserNum(id);
+			Vector<CardBean> v = new Vector<>();
+			v = udao.Search(unum, search);
+			request.setAttribute("user_unum", unum);
+			request.setAttribute("v", v);
+		
+			RequestDispatcher rd = request.getRequestDispatcher("new_list.jsp");
+			rd.forward(request, response);	
+		}
 		else {
 			System.out.println("리스트입니다.");
 			HttpSession session = request.getSession();
@@ -219,7 +241,8 @@ public class Card extends HttpServlet {
 			//사용자가 등록한 명함들을 벡터로 가져옴
 			request.setAttribute("user_unum", unum);
 			request.setAttribute("v", v);
-			RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+			System.out.println(v.size());
+			RequestDispatcher rd = request.getRequestDispatcher("new_list.jsp");
 			rd.forward(request, response);	
 		}
 		

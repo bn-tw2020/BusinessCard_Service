@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 		<div class='header_wrap'>
 				<div class='logobox'>
 				<!-- 로고 클릭하면 홈으로 와야함  -->
-					<a href='#'>
+					<a href='Card.do'>
 						<img alt='고순조' src="img/고순조logo2.png" width="100px" height="100px" />
 					</a>
 				</div>
@@ -28,15 +29,15 @@
 					</ul>
 					<ul>
 						<!-- 로그아웃 이동 -->
-						<a href='#'>
+						<a href="User.do?a=logout">
 							<li class='menubar'>로그아웃</li>
 						</a>
 						<!-- 명함 등록 이 -->
-						<a href='#'>
+						<a href="add.jsp?num=${user_unum }">
 							<li class='menubar'>명함등록</li>
 						</a>
 						<!-- user 부분에 로그인한 사람 아이디 들어가기 -->
-						<li class='menubar'><strong class='point_name'>User</strong>님이 접속하였습니다.</li>				
+						<li class='menubar'><strong class='point_name'>${username }</strong>님이 접속하였습니다.</li>				
 					</ul>
 				</div>
 		</div>
@@ -45,9 +46,10 @@
 	<main>
 	<div class='main_wrap'>
 			<div class='searchbox'>
-				<form action="#">
+				<form action="Card.do">
 					<div class='searchinput'>
-						<input type='text' name='search' value='' placeholder="이름/회사/전화번호 검색"/>
+						<input type='text' name='search' placeholder="이름을 검색하시오."/>
+						<input type='hidden' name='a' value='Search'/>
 					<!-- 돋보기버튼 -->
 						<button class='zoom'>
 							<img alt="돋보기" src="img/zoom.png" width="15px" height="15px"/>
@@ -61,126 +63,33 @@
 			<div class='card_list_wrap'>
 					
 					<!-- 반복 될 명함 아이템 + 상세 페이지 이동 -->
+				<c:forEach var="bean" items="${v}">
 					<div class='card_wrap'>
 						<div class='card_img'>
 							<!-- 디테일 페이지 이동 -->
-							<a href='#'>
+							<a href='Card.do?cnum=${bean.cnum}&a=Detail'>
 								<img alt="프로필 사진" src="img/profile.png" width="50px" height="50px">
-								<span class='company_name'>DB company</span>
+								<span class='company_name'>${bean.cb.comname }</span>
 							</a>
 						</div>
 						
 						<div class='card_info'>
 						<!-- 디테일 페이지 이동 -->
-						<a href='#'> 
-							<span class='card_name'>최민석</span>
-							<span class='card_number'>010-3759-9397</span>
-							<span class='card_address'>경기도 평택시 평남로 962</span>
-							<span class='card_department'>UI/UX 개발1팀</span>
-							<span class='card_position'>대리</span>
+						<a href='Card.do?cnum=${bean.cnum}&a=Detail'>
+							<span class='card_name'>${bean.cname }</span>
+							<span class='card_number'>${bean.phone }</span>
+							<span class='card_address'>${bean.cb.address }</span>
+							<span class='card_department'>${bean.dep }</span>
+							<span class='card_position'>${bean.pos }</span>
 						</a>
 							<div class='card_menu'>
-								<a href='#'><span class='card_function'>수정</span></a>
-								<a href='#'><span class='card_function'>삭제</span></a>
+								<a href='Card.do?cnum=${bean.cnum}&a=Update'><span class='card_function'>수정</span></a>
+								<a href='Card.do?cnum=${bean.cnum}&a=Delete'><span class='card_function'>삭제</span></a>
 							</div>
 						</div>
 					</div>
-				
+				</c:forEach>
 					
-					<div class='card_wrap'>
-						<div class='card_img'>
-							<a href='#'>
-								<img alt="프로필 사진" src="img/profile.png" width="50px" height="50px">
-								<span class='company_name'>DB company</span>
-							</a>
-						</div>
-						
-						<div class='card_info'>
-						<a href='#'> 
-							<span class='card_name'>최민석</span>
-							<span class='card_number'>010-3759-9397</span>
-							<span class='card_address'>경기도 평택시 평남로 962</span>
-							<span class='card_department'>UI/UX 개발1팀</span>
-							<span class='card_position'>대리</span>
-						</a>
-							<div class='card_menu'>
-								<a href='#'><span class='card_function'>수정</span></a>
-								<a href='#'><span class='card_function'>삭제</span></a>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class='card_wrap'>
-						<div class='card_img'>
-							<a href='#'>
-								<img alt="프로필 사진" src="img/profile.png" width="50px" height="50px">
-								<span class='company_name'>DB company</span>
-							</a>
-						</div>
-						
-						<div class='card_info'>
-						<a href='#'> 
-							<span class='card_name'>최민석</span>
-							<span class='card_number'>010-3759-9397</span>
-							<span class='card_address'>경기도 평택시 평남로 962</span>
-							<span class='card_department'>UI/UX 개발1팀</span>
-							<span class='card_position'>대리</span>
-						</a>
-							<div class='card_menu'>
-								<a href='#'><span class='card_function'>수정</span></a>
-								<a href='#'><span class='card_function'>삭제</span></a>
-							</div>
-						</div>
-					</div>
-			
-			
-					<div class='card_wrap'>
-						<div class='card_img'>
-							<a href='#'>
-								<img alt="프로필 사진" src="img/profile.png" width="50px" height="50px">
-								<span class='company_name'>DB company</span>
-							</a>
-						</div>
-						
-						<div class='card_info'>
-						<a href='#'> 
-							<span class='card_name'>최민석</span>
-							<span class='card_number'>010-3759-9397</span>
-							<span class='card_address'>경기도 평택시 평남로 962</span>
-							<span class='card_department'>UI/UX 개발1팀</span>
-							<span class='card_position'>대리</span>
-						</a>
-							<div class='card_menu'>
-								<a href='#'><span class='card_function'>수정</span></a>
-								<a href='#'><span class='card_function'>삭제</span></a>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class='card_wrap'>
-						<div class='card_img'>
-							<a href='#'>
-								<img alt="프로필 사진" src="img/profile.png" width="50px" height="50px">
-								<span class='company_name'>DB company</span>
-							</a>
-						</div>
-						
-						<div class='card_info'>
-						<a href='#'> 
-							<span class='card_name'>최민석</span>
-							<span class='card_number'>010-3759-9397</span>
-							<span class='card_address'>경기도 평택시 평남로 962</span>
-							<span class='card_department'>UI/UX 개발1팀</span>
-							<span class='card_position'>대리</span>
-						</a>
-							<div class='card_menu'>
-								<a href='#'><span class='card_function'>수정</span></a>
-								<a href='#'><span class='card_function'>삭제</span></a>
-							</div>
-						</div>
-					</div>
 			</div>
 			
 	</div>

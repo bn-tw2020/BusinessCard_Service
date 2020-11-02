@@ -17,14 +17,10 @@ public class UserDAO {
 	
 	public void getCon() {
 		try {
-			System.out.println("connection1");
 			Context initctx = new InitialContext();
-			System.out.println("connection2");
 			Context envctx = (Context)initctx.lookup("java:comp/env");
-			System.out.println("connection3");
 			DataSource ds = (DataSource)envctx.lookup("jdbc/pool");
 			con = ds.getConnection();
-			System.out.println("connection4");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -133,6 +129,7 @@ public class UserDAO {
 		return usernum;
 	}
 	
+	// 전체 리스트 가져오기
 	public Vector<CardBean> CardList(int unum) {
 		getCon();
 		Vector<CardBean> v = new Vector<>();
@@ -166,4 +163,39 @@ public class UserDAO {
 		return v;
 	}
 	
+	//검색 기능구현
+	public Vector<CardBean> Search(int unum, String search) {
+		getCon();
+		Vector<CardBean> v = new Vector<>();
+		try {
+			String sql = "select * from card where user_unum=? and cname like ?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, unum);
+			pstmt.setString(2, "%"+search+"%");
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CardBean cbean = new CardBean();		
+				cbean.setCnum(rs.getInt(1));
+				System.out.println(rs.getInt(1));
+				cbean.setCname(rs.getString(2));
+				cbean.setPhone(rs.getString(3));
+				cbean.setDep(rs.getString(4));
+				cbean.setPos(rs.getString(5));
+				cbean.setEmail(rs.getString(6));
+				cbean.setCreate_at(rs.getDate(7).toString());
+				cbean.setUser_unum(rs.getInt(8));
+				
+				ComBean combean = new ComBean();
+				CardDAO cdao = new CardDAO();
+				combean = cdao.getCom(cbean.getCnum());
+				cbean.setCb(combean);
+				v.add(cbean);	
+			}
+			con.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return v;
+	}
 }
