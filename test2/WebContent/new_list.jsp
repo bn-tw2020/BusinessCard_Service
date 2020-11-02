@@ -19,7 +19,7 @@
 		<div class='header_wrap'>
 				<div class='logobox'>
 				<!-- 로고 클릭하면 홈으로 와야함  -->
-					<a href='User.do'>
+					<a href='Card.do'>
 						<img alt='고순조' src="img/고순조logo2.png" width="100px" height="100px" />
 					</a>
 				</div>
@@ -46,9 +46,10 @@
 	<main>
 	<div class='main_wrap'>
 			<div class='searchbox'>
-				<form action="#">
+				<form action="Card.do">
 					<div class='searchinput'>
-						<input type='text' name='search' value='' placeholder="이름/회사/전화번호 검색"/>
+						<input type='text' name='search' placeholder="이름을 검색하시오."/>
+						<input type='hidden' name='a' value='Search'/>
 					<!-- 돋보기버튼 -->
 						<button class='zoom'>
 							<img alt="돋보기" src="img/zoom.png" width="15px" height="15px"/>
