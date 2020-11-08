@@ -199,7 +199,7 @@ public class Card extends HttpServlet {
 				CardBean cbean = new CardBean();
 				cbean = cdao.Detail(cnum);
 				request.setAttribute("cbean", cbean);
-				RequestDispatcher rd = request.getRequestDispatcher("Update.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("new_update.jsp");
 				rd.forward(request, response);	
 			}
 		}
