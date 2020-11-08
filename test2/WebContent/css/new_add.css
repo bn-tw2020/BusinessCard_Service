@@ -65,6 +65,8 @@ hr{
 
 .main_wrap{
 	padding: 0 5%;
+	max-width: 650px;
+    margin: 0 auto;
 }
 
 .content_wrap,
@@ -93,7 +95,7 @@ hr{
 }
 
 .content_input input{
-	color: #e4e4e4;
+	color: grey;
 	width: 90%;
 }
 .plus_phone{
