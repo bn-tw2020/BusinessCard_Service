@@ -61,16 +61,19 @@ public class User extends HttpServlet {
 				UserDAO udao = new UserDAO();
 				if(udao.findId(ubean)) {
 					request.setAttribute("msg","2");
+					System.out.println("존재하는아이디입니다.");
 					RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
 					rd.forward(request, response);
 				}else {
 					udao.insertUser(ubean);
 					request.setAttribute("msg","3");
+					System.out.println("회원등록이 되었습니다..");
 					RequestDispatcher rd = request.getRequestDispatcher("login_page.jsp");
 					rd.forward(request, response);
 				}
 				
 			}else {
+				System.out.println("비밀번호 재확인이랑 다릅니다.");
 				request.setAttribute("msg","1");
 				RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
 				rd.forward(request, response);

@@ -71,7 +71,6 @@ public class UserDAO {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
-			System.out.println("ok1");
 			if(rs.next()) {
 				String dbpw = rs.getString(1);
 				if(dbpw.equals(pw)) {
