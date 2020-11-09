@@ -34,7 +34,7 @@
                         <input type="password" name="password1" placeholder="비밀번호(최소 8자)">
                     </li>
                     <li>
-                        <input type="password" name="password2" placeholder="비밀번호(최소 8자)">
+                        <input type="password" name="password2" placeholder="비밀번호 확인(최소 8자)">
                     </li>
 
                     <li>
@@ -45,6 +45,9 @@
                     </li>
                 </ul>
             </form>
+           	 		<div class='btn_login'>
+                       	<a href="login_page.jsp"><button style="background:grey;"type='submit'>로그인 하러가기</button></a>
+                    </div>
         </div>
 
         <div class='signup_guide'>
