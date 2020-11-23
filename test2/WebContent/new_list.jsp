@@ -48,7 +48,7 @@
 			<div class='searchbox'>
 				<form action="Card.do">
 					<div class='searchinput'>
-						<input type='text' name='search' placeholder="이름을 검색하시오."/>
+						<input type='text' name='search' placeholder="이름 혹은 회사명을 검색하시오."/>
 						<input type='hidden' name='a' value='Search'/>
 					<!-- 돋보기버튼 -->
 						<button class='zoom'>

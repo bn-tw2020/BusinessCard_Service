@@ -167,16 +167,16 @@ public class UserDAO {
 		getCon();
 		Vector<CardBean> v = new Vector<>();
 		try {
-			String sql = "select * from card where user_unum=? and cname like ?";
+			String sql = "select * from (select * from card, com where card.user_unum = ? and card.cnum = com.card_cnum) as a where a.cname =? or comname=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, unum);
-			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(2, search);
+			pstmt.setString(3, search);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				CardBean cbean = new CardBean();		
 				cbean.setCnum(rs.getInt(1));
-				System.out.println(rs.getInt(1));
 				cbean.setCname(rs.getString(2));
 				cbean.setPhone(rs.getString(3));
 				cbean.setDep(rs.getString(4));
@@ -186,8 +186,15 @@ public class UserDAO {
 				cbean.setUser_unum(rs.getInt(8));
 				
 				ComBean combean = new ComBean();
-				CardDAO cdao = new CardDAO();
-				combean = cdao.getCom(cbean.getCnum());
+				ComDAO cdao = new ComDAO();
+				combean.setComnum(rs.getInt(9));
+				combean.setComname(rs.getString(10));
+				combean.setAddress(rs.getString(11));
+				combean.setFax(rs.getString(12));
+				combean.setCard_cnum(rs.getInt(13));
+				Vector<ComphoneBean> vec = new Vector<>();
+				vec = cdao.getPhone(rs.getInt(9));
+				combean.setVcp(vec);
 				cbean.setCb(combean);
 				v.add(cbean);	
 			}
